@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>谷の学び舎　五の巻 ― 明治の村の学校ものがたり</title>
+<style>
+  :root{
+    --bg:#101826; --bg2:#152033; --ink:#f1ebdc; --sub:#a9b5c4;
+    --gold:#e2b765; --line:#2b3b54; --card:#18233a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; color:var(--ink);
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 2px, transparent 2px 9px),
+      linear-gradient(180deg,#17233a,#0b111b);
+    font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","MS PMincho",serif;
+    line-height:1.9; -webkit-text-size-adjust:100%; min-height:100vh;
+  }
+  .wrap{max-width:680px; margin:0 auto; padding:18px 18px 150px}
+  .back{
+    display:inline-block; font-size:16px; color:var(--ink); text-decoration:none;
+    border:1px solid var(--line); border-radius:30px; padding:8px 20px; background:rgba(0,0,0,.35);
+  }
+  /* 本の表紙 */
+  .book{position:relative; width:min(66vw,320px); aspect-ratio:15/21; margin:26px auto 8px}
+  .book .edge{position:absolute; top:2%; left:-3.5%; width:5%; height:96%;
+    background:repeating-linear-gradient(90deg,#d8cfbd 0 1px,#a99f8c 1px 2px); border-radius:3px 0 0 3px;
+    box-shadow:-2px 4px 10px rgba(0,0,0,.5)}
+  .book .cover{position:absolute; inset:0; border-radius:6px 3px 3px 6px; overflow:hidden;
+    box-shadow:0 14px 30px rgba(0,0,0,.6), 0 2px 4px rgba(0,0,0,.6)}
+  .book .cover img{position:absolute; inset:0; width:100%; height:100%; display:block; object-fit:cover}
+  .book .spine{position:absolute; top:0; bottom:0; left:0; width:7%;
+    background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.18) 45%,rgba(0,0,0,.25))}
+  .book .vt{position:absolute; top:7%; right:12%; writing-mode:vertical-rl; color:#f3ead6;
+    font-size:min(10.5vw,52px); letter-spacing:.12em; line-height:1; text-shadow:0 2px 6px rgba(0,0,0,.45)}
+  .book .vsub{position:absolute; top:8.5%; right:30%; writing-mode:vertical-rl; color:#e3d6c0;
+    font-size:min(3.6vw,17px); letter-spacing:.32em; padding-right:.6em; border-right:1px solid rgba(243,234,214,.55);
+    line-height:1}
+  .book .author{position:absolute; left:12%; bottom:6%; color:#f3ead6; font-weight:700;
+    font-size:min(4.6vw,22px); letter-spacing:.2em; text-shadow:0 2px 6px rgba(0,0,0,.6)}
+  .book .author span{margin-right:1.2em}
+  .series{text-align:center; color:var(--gold); font-weight:700; letter-spacing:.3em; margin-top:26px; font-size:17px}
+  h1{text-align:center; font-size:min(7vw,32px); margin:4px 0 0; letter-spacing:.08em; font-weight:700; white-space:nowrap}
+  .subtitle{text-align:center; color:var(--sub); font-size:17px; letter-spacing:.08em}
+  .desc{font-size:17px; margin:18px 0 22px; line-height:2}
+  .playall{
+    display:block; width:100%; margin:0 0 24px; padding:16px; font-size:18px; font-family:inherit; font-weight:700;
+    background:linear-gradient(180deg,#e2b264,#c98d3e); color:#2a1d10; border:none; border-radius:40px; letter-spacing:.12em;
+    box-shadow:0 4px 14px rgba(0,0,0,.4);
+  }
+  .list{list-style:none; margin:0 0 26px; padding:0}
+  .list li{
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    margin-bottom:10px; padding:12px 14px; display:flex; align-items:center; gap:12px; cursor:pointer;
+  }
+  .list li.now{border-color:var(--gold)}
+  .list .no{font-size:14px; color:var(--gold); min-width:56px}
+  .list .ttl{flex:1; font-size:17px}
+  .list .mark{font-size:13px; color:var(--gold); visibility:hidden}
+  .list li.now .mark{visibility:visible}
+  article{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:22px 20px; margin-bottom:20px; scroll-margin-top:12px; overflow:hidden}
+  .epimg{display:block; width:calc(100% + 40px); margin:-22px -20px 16px; aspect-ratio:16/10; object-fit:cover}
+  article h2{font-size:20px; margin:0 0 4px; font-weight:600}
+  article .era{font-size:14px; color:var(--sub); margin-bottom:12px}
+  article p{margin:0 0 1em; font-size:17px; text-indent:1em; line-height:2.2}
+  article p.q{text-indent:0}
+  article rt{font-size:.55em; color:var(--sub)}
+  article.now{border-color:var(--gold)}
+  .readbtn{
+    font-family:inherit; font-size:15px; padding:6px 16px; border-radius:18px;
+    border:1px solid var(--gold); background:transparent; color:var(--gold); margin-bottom:12px;
+  }
+  footer{font-size:13px; color:var(--sub); text-align:center; margin-top:28px; line-height:1.9}
+  footer .back{margin-top:16px}
+  .player{
+    position:fixed; left:0; right:0; bottom:0; background:rgba(12,18,30,.96);
+    border-top:1px solid var(--line); padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  }
+  .player .in{max-width:680px; margin:0 auto}
+  .player .now-ttl{font-size:14px; margin-bottom:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--ink)}
+  .player .ctrl{display:flex; align-items:center; gap:10px}
+  .player button{
+    font-family:inherit; font-size:18px; width:46px; height:40px; border-radius:8px;
+    border:1px solid var(--line); background:var(--card); color:var(--ink);
+  }
+  .player button.main{background:var(--gold); color:#1b1608; border:none; width:58px}
+  .player input[type=range]{flex:1; accent-color:var(--gold)}
+  .player .time{font-size:12px; color:var(--sub); min-width:76px; text-align:right}
+  .player .msg{font-size:12px; color:var(--gold); min-height:1em}
+  .volnav{display:flex; justify-content:space-between; gap:10px; margin:26px 0 6px}
+  .volnav a{flex:1; text-align:center; color:var(--ink); text-decoration:none; border:1px solid var(--line); border-radius:24px; padding:10px 6px; background:rgba(0,0,0,.3); font-size:15px}
+  .volnav a.off{visibility:hidden}
+  .nextvol{display:none; text-align:center; margin:0 0 24px}
+  .nextvol a{display:inline-block; color:#2a1d10; background:var(--gold); border-radius:30px; padding:12px 28px; text-decoration:none; font-weight:700; letter-spacing:.1em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../roudoku_riaru_hondana/">‹ 本棚にもどす</a>
+
+  <div class="book" aria-label="谷の学び舎　五の巻の表紙">
+    <div class="edge"></div>
+    <div class="cover"><img src="images/cover_5.jpg" alt="谷の学び舎　五の巻の表紙"></div>
+  </div>
+
+  <div class="series">朗読帖　第八冊</div>
+  <h1>谷の学び舎　五の巻</h1>
+  <div class="subtitle">第五話「新しい校舎へ」</div>
+
+  <p class="desc">明治四十五年の春。谷に、ようやく新しい校舎が建ちました。からっぽになった教室で、新吉とお花が昔を語り合います。戦国・江戸・明治とつながってきた谷のシリーズ、三冊目の最後の巻です。</p>
+
+  <button class="playall" id="playall">▶ 本をひらいて　読む・聞く</button>
+
+  <ul class="list" id="list"></ul>
+
+  <div id="texts"></div>
+
+  <div class="nextvol" id="nextvol"><a href="../roudoku_riaru_hondana/">おわり　本棚にもどす ›</a></div>
+
+  <div class="volnav"><a class="" href="maki4.html">‹ 四の巻</a><a class="off" href="#"> ›</a></div>
+
+  <footer>
+    この物語は、明治の南相木村の学校について確かめられた事実と、<br>
+    そのころの村の学校のようすをもとにした創作です。<br>
+    登場人物はすべて架空の人物です。<br>
+    <a class="back" href="../roudoku_riaru_hondana/">‹ 本棚にもどす</a>
+  </footer>
+</div>
+
+<div class="player">
+  <div class="in">
+    <div class="now-ttl" id="nowttl">「本をひらいて　読む・聞く」で続けて聞けます</div>
+    <div class="ctrl">
+      <button id="prev" aria-label="前の話">⏮</button>
+      <button id="play" class="main" aria-label="再生">▶</button>
+      <button id="next" aria-label="次の話">⏭</button>
+      <input type="range" id="seek" min="0" max="100" value="0" step="0.1">
+      <span class="time" id="time">0:00 / 0:00</span>
+    </div>
+    <div class="msg" id="msg"></div>
+  </div>
+</div>
+
+<audio id="audio" preload="metadata"></audio>
+
+<script>
+const EPISODES = [{"no": "第五話", "title": "新しい校舎へ", "era": "明治四十五年　春", "audio": "audio/05_dai5wa.mp3", "html": "<p>第五話。新しい校舎へ。</p><p>明治四十五年の春。谷に、ようやく新しい校舎が建った。</p><p>白い壁に、ガラス窓。広い運動場もある。村の<ruby>大工<rt>だいく</rt></ruby>たちが腕をふるった、谷でいちばん大きな建物だった。村の人びとが、長い年月をかけて少しずつお金を出し合い、やっと建てた<ruby>学び舎<rt>まなびや</rt></ruby>だった。</p><p>引っ越しの日、子どもたちは、それぞれの机や<ruby>石盤<rt>せきばん</rt></ruby>を抱えて、<ruby>神楽殿<rt>かぐらでん</rt></ruby>から新しい校舎へと列をつくって歩いた。</p><p><ruby>新吉<rt>しんきち</rt></ruby>は、からっぽになった教室に、ひとり残っていた。五十に近くなり、髪には白いものがまじっている。</p><p><ruby>戸口<rt>とぐち</rt></ruby>に、人の気配がした。お花だった。</p><p class=\"q\">「とうとう、ここも終わりだね」</p><p class=\"q\">「ああ。この建物は、来年から村役場になるそうだ」</p><p>二人は、並んで<ruby>板の間<rt>いたのま</rt></ruby>に腰をおろした。床板には、たくさんの子どもたちがつけた小さな傷が、いくつも残っていた。</p><p class=\"q\">「新ちゃん、覚えてる。<ruby>囲炉裏<rt>いろり</rt></ruby>ばたで、はじめて『山』と『川』を教えてくれた晩のこと」</p><p class=\"q\">「忘れるもんか。お花のほうが、すぐにおれより上手になった」</p><p>お花は、くすりと笑った。</p><p class=\"q\">「あの晩がなかったら、わたしは字を知らないままだった。手紙も書けず、子どもに本も読んでやれなかった」</p><p>お花の子どもたちも、この教室で字を覚えたのだ。</p><p>新吉は、天井を見あげた。あの<ruby>梁<rt>はり</rt></ruby>の向こうに、「<ruby>天保三辰年<rt>てんぽうさんたつどし</rt></ruby>」の<ruby>心棒<rt>しんぼう</rt></ruby>が眠っている。</p><p class=\"q\">「じいちゃんが言っていた。字が書けなければ、村の声は上に届かんと。この建物は、芝居で村を笑わせ、学校で村の子を育てた。今度は役場として、村の声を届ける場所になる」</p><p>窓の外から、子どもたちの歌声が聞こえてきた。新しい校舎で、さっそく<ruby>唱歌<rt>しょうか</rt></ruby>の練習が始まったらしい。その中には、<ruby>正太<rt>しょうた</rt></ruby>の子どもたちの声もまじっていた。</p><p>新吉とお花は顔を見合わせて、そっと立ちあがった。二人は戸を閉め、新しい校舎へ向かって、ゆっくりと歩きだした。</p><p>それから長い年月がたった。神楽殿は八十年もの間、村役場として使われ、今は<ruby>民俗資料館<rt>みんぞくしりょうかん</rt></ruby>として、復元された<ruby>廻り舞台<rt>まわりぶたい</rt></ruby>とともに、谷の真ん中に建っている。</p><p><ruby>常源寺<rt>じょうげんじ</rt></ruby>の鐘も、きょうも変わらず、谷に時を告げている。</p><p>谷の学び舎。おわり。</p>"}];
+const NEXT_MSG = '全五巻を聞き終えました。おつかれさまでした';
+
+const audio = document.getElementById('audio');
+const list = document.getElementById('list');
+const texts = document.getElementById('texts');
+const playBtn = document.getElementById('play');
+const seek = document.getElementById('seek');
+const timeEl = document.getElementById('time');
+const nowttl = document.getElementById('nowttl');
+const msg = document.getElementById('msg');
+let cur = -1;
+let continuous = true;
+
+
+EPISODES.forEach((ep,i)=>{
+  const li = document.createElement('li');
+  li.innerHTML = `<span class="no">${ep.no}</span><span class="ttl">${ep.title}</span><span class="mark">♪ 再生中</span>`;
+  li.onclick = ()=>{ load(i,true); };
+  list.appendChild(li);
+
+  const art = document.createElement('article');
+  art.id = 'ep'+i;
+  art.innerHTML = `<h2>${ep.no}　${ep.title}</h2>${ep.era?`<div class="era">${ep.era}</div>`:''}<button class="readbtn">▶ この話を聞く</button>${ep.html}`;
+  art.querySelector('.readbtn').onclick = ()=>{ load(i,true); };
+  texts.appendChild(art);
+});
+
+function fmt(t){ if(!isFinite(t)) return '0:00'; const m=Math.floor(t/60), s=Math.floor(t%60); return m+':'+String(s).padStart(2,'0'); }
+
+function mark(){
+  [...list.children].forEach((li,i)=>li.classList.toggle('now',i===cur));
+  [...texts.children].forEach((a,i)=>a.classList.toggle('now',i===cur));
+}
+
+function load(i, autoplay){
+  if(i<0 || i>=EPISODES.length) return;
+  cur = i;
+  msg.textContent = '';
+  audio.src = EPISODES[i].audio;
+  nowttl.textContent = EPISODES[i].no + '　' + EPISODES[i].title;
+  mark();
+  document.getElementById('ep'+i).scrollIntoView({behavior:'smooth', block:'start'});
+  if(autoplay){ audio.play().catch(()=>{}); }
+}
+
+document.getElementById('playall').onclick = ()=>{ continuous = true; load(0,true); };
+playBtn.onclick = ()=>{
+  if(cur<0){ load(0,true); return; }
+  if(audio.paused) audio.play().catch(()=>{}); else audio.pause();
+};
+document.getElementById('prev').onclick = ()=>{ load(Math.max(0,cur-1),true); };
+document.getElementById('next').onclick = ()=>{ if(cur<EPISODES.length-1) load(cur+1,true); };
+
+audio.addEventListener('play', ()=>{ playBtn.textContent='⏸'; });
+audio.addEventListener('pause', ()=>{ playBtn.textContent='▶'; });
+audio.addEventListener('timeupdate', ()=>{
+  if(audio.duration){ seek.value = audio.currentTime/audio.duration*100; }
+  timeEl.textContent = fmt(audio.currentTime)+' / '+fmt(audio.duration);
+});
+seek.addEventListener('input', ()=>{ if(audio.duration) audio.currentTime = seek.value/100*audio.duration; });
+audio.addEventListener('ended', ()=>{
+  if(continuous && cur < EPISODES.length-1){ load(cur+1,true); }
+  else { playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; }
+});
+audio.addEventListener('error', ()=>{
+  if(cur>=0) msg.textContent = 'この話の音声はまだ入っていません（' + EPISODES[cur].audio + '）';
+});
+</script>
+</body>
+</html>
