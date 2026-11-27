@@ -18,7 +18,7 @@
     font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","MS PMincho",serif;
     line-height:1.9; -webkit-text-size-adjust:100%; min-height:100vh;
   }
-  .wrap{max-width:680px; margin:0 auto; padding:18px 18px 190px}
+  .wrap{max-width:680px; margin:0 auto; padding:18px 18px 170px}
   .back{
     display:inline-block; font-size:16px; color:var(--ink); text-decoration:none;
     border:1px solid var(--line); border-radius:30px; padding:8px 20px; background:rgba(0,0,0,.35);
@@ -95,18 +95,10 @@
   .nextvol{display:none; text-align:center; margin:0 0 24px}
   .nextvol a{display:inline-block; color:#2a1d10; background:var(--gold); border-radius:30px; padding:12px 28px; text-decoration:none; font-weight:700; letter-spacing:.1em}
 
-  .player .top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
-  .player .top .now-ttl{flex:1; margin-bottom:0; min-width:0}
-  .player .bottom{display:flex; align-items:center; gap:10px; margin-top:6px}
-  .player .bottom .msg{flex:1; min-width:0}
-  .player .pill{
-    font-family:inherit; font-size:14px; width:auto; height:auto; padding:6px 14px; border-radius:18px;
-    border:1px solid var(--line); background:var(--card); color:var(--ink); white-space:nowrap;
-  }
-  .player .pill[aria-pressed="true"]{background:var(--gold); color:#1b1608; border-color:var(--gold); font-weight:700}
-  .toast{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(150px + env(safe-area-inset-bottom,0px));
-    background:var(--ink); color:var(--bg); padding:10px 16px; border-radius:10px; font-size:14px; z-index:30; max-width:calc(100% - 32px)}
-  .toast[hidden]{display:none}
+  .player .head{display:flex; align-items:center; gap:8px; margin-bottom:6px}
+  .player .head .now-ttl{flex:1; min-width:0; margin-bottom:0}
+  .player button.sm{width:auto; height:32px; padding:0 10px; font-size:13px; white-space:nowrap}
+  .player button.sm[aria-pressed="true"]{border-color:var(--gold); color:var(--gold)}
 </style>
 </head>
 <body>
@@ -144,9 +136,10 @@
 
 <div class="player">
   <div class="in">
-    <div class="top">
+    <div class="head">
       <div class="now-ttl" id="nowttl">「本をひらいて　読む・聞く」で続けて聞けます</div>
-      <button class="pill" id="timerBtn" type="button" aria-label="おやすみタイマー" aria-pressed="false">☾ タイマー</button>
+      <button class="sm" id="sleep" aria-label="おやすみタイマー" aria-pressed="false">☾ タイマー</button>
+      <button class="sm" id="cont" aria-label="続けて再生" aria-pressed="true">連続</button>
     </div>
     <div class="ctrl">
       <button id="prev" aria-label="前の話">⏮</button>
@@ -155,15 +148,10 @@
       <input type="range" id="seek" min="0" max="100" value="0" step="0.1">
       <span class="time" id="time">0:00 / 0:00</span>
     </div>
-    <div class="bottom">
-      <div class="msg" id="msg"></div>
-      <button class="pill" id="contBtn" type="button" aria-label="続けて再生" aria-pressed="true">連続</button>
-    </div>
+    <div class="msg" id="msg"></div>
   </div>
 </div>
 
-
-<div class="toast" id="toast" hidden></div>
 <audio id="audio" preload="metadata"></audio>
 
 <script>
@@ -204,7 +192,7 @@ function mark(){
 
 function load(i, autoplay){
   if(i<0 || i>=EPISODES.length) return;
-  audio.volume = 1;
+  try{audio.volume=1}catch(e){}
   cur = i;
   msg.textContent = '';
   audio.src = EPISODES[i].audio;
@@ -230,7 +218,7 @@ audio.addEventListener('timeupdate', ()=>{
 });
 seek.addEventListener('input', ()=>{ if(audio.duration) audio.currentTime = seek.value/100*audio.duration; });
 audio.addEventListener('ended', ()=>{
-  if(SLEEP[sleepIdx]===-1){ resetSleep(); playBtn.textContent='▶'; toast('おやすみなさい'); return; }
+  if(SLEEP[sleepIdx]===-1){ resetSleep(); playBtn.textContent='▶'; msg.textContent='おやすみなさい'; return; }
   if(continuous && cur < EPISODES.length-1){ load(cur+1,true); }
   else if(continuous){ goNextVol().then(ok=>{ if(!ok){ playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; } }); }
   else { playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; }
@@ -239,41 +227,38 @@ audio.addEventListener('error', ()=>{
   if(cur>=0) msg.textContent = 'この話の音声はまだ入っていません（' + EPISODES[cur].audio + '）';
 });
 
-/* ---- お知らせ ---- */
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,2600);}
+/* ---- 連続（谷にひびくと同じ） ---- */
+document.getElementById('cont').onclick=function(){
+  continuous=!continuous; this.setAttribute('aria-pressed',continuous);
+  msg.textContent=continuous?'終わったら次の話へ進みます':'一話ずつ止まります';
+};
 
-/* ---- 連続（押すたびにオン・オフ） ---- */
-const contBtn=document.getElementById('contBtn');
-function showCont(){contBtn.setAttribute('aria-pressed',continuous);}
-contBtn.onclick=()=>{continuous=!continuous;showCont();toast(continuous?'終わったら次の朗読へ進みます':'一話ずつ止まります');};
-showCont();
-
-/* ---- おやすみタイマー（押すたびに 15分→20分→30分→この話まで→切） ---- */
+/* ---- おやすみタイマー（谷にひびくと同じ：押すたびに 15分→20分→30分→この話まで→切） ---- */
 const SLEEP=[0,15,20,30,-1];
-let sleepIdx=0,deadline=null,fading=null;
-function resetSleep(){sleepIdx=0;deadline=null;showSleep();}
+let sleepIdx=0, deadline=null, fading=null;
+const sleepBtn=document.getElementById('sleep');
+function resetSleep(){ sleepIdx=0; deadline=null; showSleep(); }
 function showSleep(){
-  const b=document.getElementById('timerBtn'),m=SLEEP[sleepIdx];b.setAttribute('aria-pressed',m!==0);
-  b.textContent=m===0?'☾ タイマー':m===-1?'☾ この話まで':'☾ 残り'+fmt(Math.max(0,deadline-Date.now())/1000);
+  const m=SLEEP[sleepIdx]; sleepBtn.setAttribute('aria-pressed',m!==0);
+  sleepBtn.textContent=m===0?'☾ タイマー':m===-1?'☾ この話まで':'☾ 残り'+fmt(Math.max(0,deadline-Date.now())/1000);
 }
 function checkSleep(){
-  if(!deadline||fading)return;
+  if(!deadline||fading) return;
   if(Date.now()>=deadline){
-    if(audio.paused){resetSleep();return;}
-    let v=1;fading=setInterval(()=>{v-=0.05;try{audio.volume=Math.max(0,v)}catch(e){}
-      if(v<=0){clearInterval(fading);fading=null;audio.pause();try{audio.volume=1}catch(e){}resetSleep();toast('おやすみなさい');}},500);
+    if(audio.paused){ resetSleep(); return; }
+    let v=1; fading=setInterval(()=>{ v-=0.05; try{audio.volume=Math.max(0,v)}catch(e){}
+      if(v<=0){ clearInterval(fading); fading=null; audio.pause(); try{audio.volume=1}catch(e){} resetSleep(); msg.textContent='おやすみなさい'; } },500);
   }
 }
-document.getElementById('timerBtn').onclick=()=>{
-  if(fading){clearInterval(fading);fading=null;try{audio.volume=1}catch(e){}}
-  sleepIdx=(sleepIdx+1)%SLEEP.length;const m=SLEEP[sleepIdx];
-  deadline=m>0?Date.now()+m*60000:null;showSleep();
-  toast(m===0?'タイマーを切りました':m===-1?'いまの朗読が終わったら止めます':m+'分後にゆっくり止めます');
+sleepBtn.onclick=()=>{
+  if(fading){ clearInterval(fading); fading=null; try{audio.volume=1}catch(e){} }
+  sleepIdx=(sleepIdx+1)%SLEEP.length; const m=SLEEP[sleepIdx];
+  deadline=m>0?Date.now()+m*60000:null; showSleep();
+  msg.textContent=m===0?'タイマーを切りました':m===-1?'いまの話が終わったら止めます':m+'分後にゆっくり止めます';
 };
-setInterval(()=>{if(deadline)showSleep();checkSleep();},1000);
-showSleep();
+setInterval(()=>{ if(deadline) showSleep(); checkSleep(); },1000);
 
-/* 本棚の目次から開いたとき（#ep1 など）、その話を選んでおく */
+/* ---- 本棚の目次から開いたとき（#ep1 など）、その話を選んでおく ---- */
 function openFromHash(){ const m=location.hash.match(/^#ep(\d+)$/); if(m && EPISODES[+m[1]]) load(+m[1], false); }
 window.addEventListener('hashchange', openFromHash);
 setTimeout(openFromHash, 200);
