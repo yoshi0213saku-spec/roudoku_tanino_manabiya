@@ -167,8 +167,8 @@
 <audio id="audio" preload="metadata"></audio>
 
 <script>
-const EPISODES = [{"no": "第五話", "title": "新しい校舎へ", "era": "明治四十五年　春", "audio": "audio/05_dai5wa.mp3", "html": "<p>第五話。新しい校舎へ。</p><p>明治四十五年の春。谷に、ようやく新しい校舎が建った。</p><p>白い壁に、ガラス窓。広い運動場もある。村の<ruby>大工<rt>だいく</rt></ruby>たちが腕をふるった、谷でいちばん大きな建物だった。村の人びとが、長い年月をかけて少しずつお金を出し合い、やっと建てた<ruby>学び舎<rt>まなびや</rt></ruby>だった。</p><p>引っ越しの日、子どもたちは、それぞれの机や<ruby>石盤<rt>せきばん</rt></ruby>を抱えて、<ruby>神楽殿<rt>かぐらでん</rt></ruby>から新しい校舎へと列をつくって歩いた。</p><p><ruby>新吉<rt>しんきち</rt></ruby>は、からっぽになった教室に、ひとり残っていた。五十に近くなり、髪には白いものがまじっている。</p><p><ruby>戸口<rt>とぐち</rt></ruby>に、人の気配がした。お花だった。</p><p class=\"q\">「とうとう、ここも終わりだね」</p><p class=\"q\">「ああ。この建物は、来年から村役場になるそうだ」</p><p>二人は、並んで<ruby>板の間<rt>いたのま</rt></ruby>に腰をおろした。床板には、たくさんの子どもたちがつけた小さな傷が、いくつも残っていた。</p><p class=\"q\">「新ちゃん、覚えてる。<ruby>囲炉裏<rt>いろり</rt></ruby>ばたで、はじめて『山』と『川』を教えてくれた晩のこと」</p><p class=\"q\">「忘れるもんか。お花のほうが、すぐにおれより上手になった」</p><p>お花は、くすりと笑った。</p><p class=\"q\">「あの晩がなかったら、わたしは字を知らないままだった。手紙も書けず、子どもに本も読んでやれなかった」</p><p>お花の子どもたちも、この教室で字を覚えたのだ。</p><p>新吉は、天井を見あげた。あの<ruby>梁<rt>はり</rt></ruby>の向こうに、「<ruby>天保三辰年<rt>てんぽうさんたつどし</rt></ruby>」の<ruby>心棒<rt>しんぼう</rt></ruby>が眠っている。</p><p class=\"q\">「じいちゃんが言っていた。字が書けなければ、村の声は上に届かんと。この建物は、芝居で村を笑わせ、学校で村の子を育てた。今度は役場として、村の声を届ける場所になる」</p><p>窓の外から、子どもたちの歌声が聞こえてきた。新しい校舎で、さっそく<ruby>唱歌<rt>しょうか</rt></ruby>の練習が始まったらしい。その中には、<ruby>正太<rt>しょうた</rt></ruby>の子どもたちの声もまじっていた。</p><p>新吉とお花は顔を見合わせて、そっと立ちあがった。二人は戸を閉め、新しい校舎へ向かって、ゆっくりと歩きだした。</p><p>それから長い年月がたった。神楽殿は八十年もの間、村役場として使われ、今は<ruby>民俗資料館<rt>みんぞくしりょうかん</rt></ruby>として、復元された<ruby>廻り舞台<rt>まわりぶたい</rt></ruby>とともに、谷の真ん中に建っている。</p><p><ruby>常源寺<rt>じょうげんじ</rt></ruby>の鐘も、きょうも変わらず、谷に時を告げている。</p><p>谷の学び舎。おわり。</p>"}];
-const NEXT_MSG = '全五巻を聞き終えました。おつかれさまでした';
+let EPISODES = [{"no": "第五話", "title": "新しい校舎へ", "era": "明治四十五年　春", "audio": "audio/05_dai5wa.mp3", "html": "<p>第五話。新しい校舎へ。</p><p>明治四十五年の春。谷に、ようやく新しい校舎が建った。</p><p>白い壁に、ガラス窓。広い運動場もある。村の<ruby>大工<rt>だいく</rt></ruby>たちが腕をふるった、谷でいちばん大きな建物だった。村の人びとが、長い年月をかけて少しずつお金を出し合い、やっと建てた<ruby>学び舎<rt>まなびや</rt></ruby>だった。</p><p>引っ越しの日、子どもたちは、それぞれの机や<ruby>石盤<rt>せきばん</rt></ruby>を抱えて、<ruby>神楽殿<rt>かぐらでん</rt></ruby>から新しい校舎へと列をつくって歩いた。</p><p><ruby>新吉<rt>しんきち</rt></ruby>は、からっぽになった教室に、ひとり残っていた。五十に近くなり、髪には白いものがまじっている。</p><p><ruby>戸口<rt>とぐち</rt></ruby>に、人の気配がした。お花だった。</p><p class=\"q\">「とうとう、ここも終わりだね」</p><p class=\"q\">「ああ。この建物は、来年から村役場になるそうだ」</p><p>二人は、並んで<ruby>板の間<rt>いたのま</rt></ruby>に腰をおろした。床板には、たくさんの子どもたちがつけた小さな傷が、いくつも残っていた。</p><p class=\"q\">「新ちゃん、覚えてる。<ruby>囲炉裏<rt>いろり</rt></ruby>ばたで、はじめて『山』と『川』を教えてくれた晩のこと」</p><p class=\"q\">「忘れるもんか。お花のほうが、すぐにおれより上手になった」</p><p>お花は、くすりと笑った。</p><p class=\"q\">「あの晩がなかったら、わたしは字を知らないままだった。手紙も書けず、子どもに本も読んでやれなかった」</p><p>お花の子どもたちも、この教室で字を覚えたのだ。</p><p>新吉は、天井を見あげた。あの<ruby>梁<rt>はり</rt></ruby>の向こうに、「<ruby>天保三辰年<rt>てんぽうさんたつどし</rt></ruby>」の<ruby>心棒<rt>しんぼう</rt></ruby>が眠っている。</p><p class=\"q\">「じいちゃんが言っていた。字が書けなければ、村の声は上に届かんと。この建物は、芝居で村を笑わせ、学校で村の子を育てた。今度は役場として、村の声を届ける場所になる」</p><p>窓の外から、子どもたちの歌声が聞こえてきた。新しい校舎で、さっそく<ruby>唱歌<rt>しょうか</rt></ruby>の練習が始まったらしい。その中には、<ruby>正太<rt>しょうた</rt></ruby>の子どもたちの声もまじっていた。</p><p>新吉とお花は顔を見合わせて、そっと立ちあがった。二人は戸を閉め、新しい校舎へ向かって、ゆっくりと歩きだした。</p><p>それから長い年月がたった。神楽殿は八十年もの間、村役場として使われ、今は<ruby>民俗資料館<rt>みんぞくしりょうかん</rt></ruby>として、復元された<ruby>廻り舞台<rt>まわりぶたい</rt></ruby>とともに、谷の真ん中に建っている。</p><p><ruby>常源寺<rt>じょうげんじ</rt></ruby>の鐘も、きょうも変わらず、谷に時を告げている。</p><p>谷の学び舎。おわり。</p>"}];
+let NEXT_MSG = '全五巻を聞き終えました。おつかれさまでした';
 
 const audio = document.getElementById('audio');
 const list = document.getElementById('list');
@@ -232,6 +232,7 @@ seek.addEventListener('input', ()=>{ if(audio.duration) audio.currentTime = seek
 audio.addEventListener('ended', ()=>{
   if(SLEEP[sleepIdx]===-1){ resetSleep(); playBtn.textContent='▶'; toast('おやすみなさい'); return; }
   if(continuous && cur < EPISODES.length-1){ load(cur+1,true); }
+  else if(continuous){ goNextVol().then(ok=>{ if(!ok){ playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; } }); }
   else { playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; }
 });
 audio.addEventListener('error', ()=>{
@@ -276,6 +277,46 @@ showSleep();
 function openFromHash(){ const m=location.hash.match(/^#ep(\d+)$/); if(m && EPISODES[+m[1]]) load(+m[1], false); }
 window.addEventListener('hashchange', openFromHash);
 setTimeout(openFromHash, 200);
+
+/* ---- 連続がオンなら、巻の終わりで次の巻を読みこんで、そのまま続けて再生する ---- */
+const VOLFILES=["index.html","maki2.html","maki3.html","maki4.html","maki5.html"];
+function curFile(){const f=location.pathname.split('/').pop();return f===''?'index.html':f;}
+function buildAll(){
+  list.innerHTML=''; texts.innerHTML='';
+  EPISODES.forEach((ep,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`<span class="no">${ep.no}</span><span class="ttl">${ep.title}</span><span class="mark">♪ 再生中</span>`;
+    li.onclick=()=>{ load(i,true); };
+    list.appendChild(li);
+    const art=document.createElement('article');
+    art.id='ep'+i;
+    art.innerHTML=`<h2>${ep.no}　${ep.title}</h2>${ep.era?`<div class="era">${ep.era}</div>`:''}<button class="readbtn">▶ この話を聞く</button>${ep.html}`;
+    art.querySelector('.readbtn').onclick=()=>{ load(i,true); };
+    texts.appendChild(art);
+  });
+}
+async function goNextVol(){
+  const i=VOLFILES.indexOf(curFile()); if(i<0||i>=VOLFILES.length-1) return false;
+  const nf=VOLFILES[i+1];
+  try{
+    const r=await fetch(nf,{cache:'no-store'}); if(!r.ok) return false;
+    const html=await r.text();
+    const m=html.match(/(?:const|let) EPISODES = (.*);\n/); if(!m) return false;
+    const eps=JSON.parse(m[1]);
+    const nm=html.match(/(?:const|let) NEXT_MSG = '(.*)';/);
+    const d=new DOMParser().parseFromString(html,'text/html');
+    ['.book','.series','h1','.subtitle','.desc','.nextvol','.volnav'].forEach(sel=>{
+      const a=document.querySelector(sel), b=d.querySelector(sel);
+      if(a&&b) a.replaceWith(document.importNode(b,true));
+    });
+    document.title=d.title;
+    try{ history.replaceState(null,'',nf); }catch(e){}
+    EPISODES=eps; if(nm) NEXT_MSG=nm[1];
+    buildAll(); cur=-1;
+    load(0,true);
+    return true;
+  }catch(e){ return false; }
+}
 </script>
 </body>
 </html>

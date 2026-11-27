@@ -167,8 +167,8 @@
 <audio id="audio" preload="metadata"></audio>
 
 <script>
-const EPISODES = [{"no": "第二話", "title": "お花の石盤", "era": "明治七年", "audio": "audio/02_dai2wa.mp3", "html": "<p>第二話。お花の<ruby>石盤<rt>せきばん</rt></ruby>。</p><p><ruby>新吉<rt>しんきち</rt></ruby>の家の隣に、お花という女の子がいた。新吉より一つ上の九つで、朝から晩まで、弟たちの<ruby>子守り<rt>こもり</rt></ruby>と畑の手伝いに追われていた。</p><p>学校へ通うのは、ほとんどが男の子だった。</p><p class=\"q\">「女に学問はいらねえ。<ruby>嫁<rt>よめ</rt></ruby>に行けば、針と<ruby>鍬<rt>くわ</rt></ruby>が使えればいい」</p><p>お花の父親は、そう言って笑った。その年、谷の女の子で学校へ通っていたのは、ほんの数えるほどだった。</p><p>けれどもお花は、毎朝、<ruby>常源寺<rt>じょうげんじ</rt></ruby>の<ruby>石段<rt>いしだん</rt></ruby>をのぼっていく子どもたちを、うらやましそうに見送っていた。</p><p>ある晩、新吉が石盤を抱えて帰ってくると、お花が<ruby>垣根<rt>かきね</rt></ruby>のかげで待っていた。</p><p class=\"q\">「新ちゃん、今日は何を習ったの」</p><p>新吉は少し得意になって、石盤に<ruby>石筆<rt>せきひつ</rt></ruby>で字を書いてみせた。</p><p class=\"q\">「これが『山』。これが『川』。おれたちの谷の字だ」</p><p>お花は息をのんで、その字を見つめた。</p><p>その晩から、二人の小さな学校が始まった。紙がないので、お花は<ruby>囲炉裏<rt>いろり</rt></ruby>の灰をならし、そこに指で字を書いた。囲炉裏の明かりの下、新吉はその日習ったことを、お花に教えた。お花は覚えがはやかった。ひと月もすると、新吉より上手に字を書くようになった。</p><p>ある夜、お花の母親が、そっと<ruby>戸口<rt>とぐち</rt></ruby>に立っていた。娘が、灰の上に指で字を書いては消し、書いては消しているのを、黙って見ていた。</p><p>母親は字が読めなかった。嫁に来るとき、実家の母から届いた手紙を、人に読んでもらったことがある。手紙に本当は何が書いてあったのか、今もわからない。あの時のくやしさを、忘れてはいなかった。</p><p>次の朝、母親は夫の前に手をついた。</p><p class=\"q\">「お花を、学校へやっておくんなさい。畑の分は、わたしが朝はやく起きて取りかえします」</p><p>父親はしばらく黙っていたが、やがて、ぶっきらぼうに言った。</p><p class=\"q\">「好きにしろ」</p><p>その春、常源寺の<ruby>長机<rt>ながづくえ</rt></ruby>に、お花の姿があった。古い石盤は、<ruby>与吉<rt>よきち</rt></ruby>がそっと用意してくれたものだった。</p><p class=\"q\">「お花、よく来たな」</p><p>与吉の言葉に、お花は顔を赤くしてうなずいた。</p><p>お花は石盤を胸に抱いて、<ruby>本堂<rt>ほんどう</rt></ruby>の天井を見あげた。そこには、まだ知らない字が、山ほど待っているような気がした。</p>"}];
-const NEXT_MSG = '二の巻を聞き終えました。次は三の巻へ';
+let EPISODES = [{"no": "第二話", "title": "お花の石盤", "era": "明治七年", "audio": "audio/02_dai2wa.mp3", "html": "<p>第二話。お花の<ruby>石盤<rt>せきばん</rt></ruby>。</p><p><ruby>新吉<rt>しんきち</rt></ruby>の家の隣に、お花という女の子がいた。新吉より一つ上の九つで、朝から晩まで、弟たちの<ruby>子守り<rt>こもり</rt></ruby>と畑の手伝いに追われていた。</p><p>学校へ通うのは、ほとんどが男の子だった。</p><p class=\"q\">「女に学問はいらねえ。<ruby>嫁<rt>よめ</rt></ruby>に行けば、針と<ruby>鍬<rt>くわ</rt></ruby>が使えればいい」</p><p>お花の父親は、そう言って笑った。その年、谷の女の子で学校へ通っていたのは、ほんの数えるほどだった。</p><p>けれどもお花は、毎朝、<ruby>常源寺<rt>じょうげんじ</rt></ruby>の<ruby>石段<rt>いしだん</rt></ruby>をのぼっていく子どもたちを、うらやましそうに見送っていた。</p><p>ある晩、新吉が石盤を抱えて帰ってくると、お花が<ruby>垣根<rt>かきね</rt></ruby>のかげで待っていた。</p><p class=\"q\">「新ちゃん、今日は何を習ったの」</p><p>新吉は少し得意になって、石盤に<ruby>石筆<rt>せきひつ</rt></ruby>で字を書いてみせた。</p><p class=\"q\">「これが『山』。これが『川』。おれたちの谷の字だ」</p><p>お花は息をのんで、その字を見つめた。</p><p>その晩から、二人の小さな学校が始まった。紙がないので、お花は<ruby>囲炉裏<rt>いろり</rt></ruby>の灰をならし、そこに指で字を書いた。囲炉裏の明かりの下、新吉はその日習ったことを、お花に教えた。お花は覚えがはやかった。ひと月もすると、新吉より上手に字を書くようになった。</p><p>ある夜、お花の母親が、そっと<ruby>戸口<rt>とぐち</rt></ruby>に立っていた。娘が、灰の上に指で字を書いては消し、書いては消しているのを、黙って見ていた。</p><p>母親は字が読めなかった。嫁に来るとき、実家の母から届いた手紙を、人に読んでもらったことがある。手紙に本当は何が書いてあったのか、今もわからない。あの時のくやしさを、忘れてはいなかった。</p><p>次の朝、母親は夫の前に手をついた。</p><p class=\"q\">「お花を、学校へやっておくんなさい。畑の分は、わたしが朝はやく起きて取りかえします」</p><p>父親はしばらく黙っていたが、やがて、ぶっきらぼうに言った。</p><p class=\"q\">「好きにしろ」</p><p>その春、常源寺の<ruby>長机<rt>ながづくえ</rt></ruby>に、お花の姿があった。古い石盤は、<ruby>与吉<rt>よきち</rt></ruby>がそっと用意してくれたものだった。</p><p class=\"q\">「お花、よく来たな」</p><p>与吉の言葉に、お花は顔を赤くしてうなずいた。</p><p>お花は石盤を胸に抱いて、<ruby>本堂<rt>ほんどう</rt></ruby>の天井を見あげた。そこには、まだ知らない字が、山ほど待っているような気がした。</p>"}];
+let NEXT_MSG = '二の巻を聞き終えました。次は三の巻へ';
 
 const audio = document.getElementById('audio');
 const list = document.getElementById('list');
@@ -232,6 +232,7 @@ seek.addEventListener('input', ()=>{ if(audio.duration) audio.currentTime = seek
 audio.addEventListener('ended', ()=>{
   if(SLEEP[sleepIdx]===-1){ resetSleep(); playBtn.textContent='▶'; toast('おやすみなさい'); return; }
   if(continuous && cur < EPISODES.length-1){ load(cur+1,true); }
+  else if(continuous){ goNextVol().then(ok=>{ if(!ok){ playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; } }); }
   else { playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; }
 });
 audio.addEventListener('error', ()=>{
@@ -276,6 +277,46 @@ showSleep();
 function openFromHash(){ const m=location.hash.match(/^#ep(\d+)$/); if(m && EPISODES[+m[1]]) load(+m[1], false); }
 window.addEventListener('hashchange', openFromHash);
 setTimeout(openFromHash, 200);
+
+/* ---- 連続がオンなら、巻の終わりで次の巻を読みこんで、そのまま続けて再生する ---- */
+const VOLFILES=["index.html","maki2.html","maki3.html","maki4.html","maki5.html"];
+function curFile(){const f=location.pathname.split('/').pop();return f===''?'index.html':f;}
+function buildAll(){
+  list.innerHTML=''; texts.innerHTML='';
+  EPISODES.forEach((ep,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`<span class="no">${ep.no}</span><span class="ttl">${ep.title}</span><span class="mark">♪ 再生中</span>`;
+    li.onclick=()=>{ load(i,true); };
+    list.appendChild(li);
+    const art=document.createElement('article');
+    art.id='ep'+i;
+    art.innerHTML=`<h2>${ep.no}　${ep.title}</h2>${ep.era?`<div class="era">${ep.era}</div>`:''}<button class="readbtn">▶ この話を聞く</button>${ep.html}`;
+    art.querySelector('.readbtn').onclick=()=>{ load(i,true); };
+    texts.appendChild(art);
+  });
+}
+async function goNextVol(){
+  const i=VOLFILES.indexOf(curFile()); if(i<0||i>=VOLFILES.length-1) return false;
+  const nf=VOLFILES[i+1];
+  try{
+    const r=await fetch(nf,{cache:'no-store'}); if(!r.ok) return false;
+    const html=await r.text();
+    const m=html.match(/(?:const|let) EPISODES = (.*);\n/); if(!m) return false;
+    const eps=JSON.parse(m[1]);
+    const nm=html.match(/(?:const|let) NEXT_MSG = '(.*)';/);
+    const d=new DOMParser().parseFromString(html,'text/html');
+    ['.book','.series','h1','.subtitle','.desc','.nextvol','.volnav'].forEach(sel=>{
+      const a=document.querySelector(sel), b=d.querySelector(sel);
+      if(a&&b) a.replaceWith(document.importNode(b,true));
+    });
+    document.title=d.title;
+    try{ history.replaceState(null,'',nf); }catch(e){}
+    EPISODES=eps; if(nm) NEXT_MSG=nm[1];
+    buildAll(); cur=-1;
+    load(0,true);
+    return true;
+  }catch(e){ return false; }
+}
 </script>
 </body>
 </html>

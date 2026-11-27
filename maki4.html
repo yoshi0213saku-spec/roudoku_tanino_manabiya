@@ -167,8 +167,8 @@
 <audio id="audio" preload="metadata"></audio>
 
 <script>
-const EPISODES = [{"no": "第四話", "title": "舞台の上の教室", "era": "明治三十五年", "audio": "audio/04_dai4wa.mp3", "html": "<p>第四話。舞台の上の教室。</p><p>明治三十五年。<ruby>中島<rt>なかじま</rt></ruby>の<ruby>神楽殿<rt>かぐらでん</rt></ruby>で、<ruby>改修<rt>かいしゅう</rt></ruby>の工事が始まった。</p><p><ruby>茅葺き<rt>かやぶき</rt></ruby>の大きな屋根はそのままに、舞台の上に床を張り、壁をつけ、窓をあける。芝居の舞台を、教室につくりかえるのだ。村の人びとも、手のあいた日には木材を運んだり、<ruby>壁土<rt>かべつち</rt></ruby>をこねたりして、工事を手伝った。</p><p><ruby>新吉<rt>しんきち</rt></ruby>は、村の<ruby>大工<rt>だいく</rt></ruby>たちといっしょに、毎日のように工事を手伝った。</p><p>ある日、<ruby>天井裏<rt>てんじょううら</rt></ruby>にのぼった大工が、大きな声をあげた。</p><p class=\"q\">「先生、ちょっと来てみなせえ」</p><p>新吉がはしごをのぼると、薄暗い天井裏に、太い<ruby>心棒<rt>しんぼう</rt></ruby>が立っていた。<ruby>廻り舞台<rt>まわりぶたい</rt></ruby>を回すための、<ruby>回転軸<rt>かいてんじく</rt></ruby>だった。そこに、刻まれた文字があった。</p><p class=\"q\">「<ruby>天保三辰年<rt>てんぽうさんたつどし</rt></ruby>」</p><p>新吉は、息をのんだ。<ruby>天保<rt>てんぽう</rt></ruby>三年。祖父の<ruby>与吉<rt>よきち</rt></ruby>が十五の秋、生まれてはじめて<ruby>女形<rt>おやま</rt></ruby>をつとめた年だ。</p><p>与吉は、新吉が幼いころ、何度もその夜の話をしてくれた。笛と太鼓が谷にひびき、ろうそくの灯がゆれていた。舞台がくるりと回ると、年寄りも子どもも、手をたたいて笑った。</p><p class=\"q\">「あの舞台はな、村の宝だ。いつか、きっと、また役に立つ」</p><p>祖父の声が、耳の奥によみがえった。新吉は、心棒にそっと手をあてた。木の肌は冷たく、けれども、どこかあたたかいような気がした。</p><p class=\"q\">「この心棒は、そのまま残しておいてくれ」</p><p>新吉は大工たちに頼んだ。床を張っても、壁で囲っても、この文字だけは消さずにおきたかった。</p><p>秋になって、新しい教室ができあがった。広い<ruby>板の間<rt>いたのま</rt></ruby>に机が並び、高い窓から光がさしこむ。子どもたちは目をかがやかせて、教室を走りまわった。窓の外には、茅葺きの<ruby>軒先<rt>のきさき</rt></ruby>から、秋の日がやわらかくさしていた。</p><p>はじめての授業の日、新吉は黒板の前に立って、子どもたちに言った。</p><p class=\"q\">「この教室は、むかし芝居の舞台だった。お前たちのひいじいさんやひいばあさんが、ここで笑ったり泣いたりしたんだ。その人たちが守ってきた建物だ。大切に使うんだぞ」</p><p>子どもたちは、ふしぎそうに床を見つめた。</p><p>新吉はほほえんだ。足の下では、あの廻り舞台が、静かに眠っていた。</p>"}];
-const NEXT_MSG = '四の巻を聞き終えました。次は五の巻へ';
+let EPISODES = [{"no": "第四話", "title": "舞台の上の教室", "era": "明治三十五年", "audio": "audio/04_dai4wa.mp3", "html": "<p>第四話。舞台の上の教室。</p><p>明治三十五年。<ruby>中島<rt>なかじま</rt></ruby>の<ruby>神楽殿<rt>かぐらでん</rt></ruby>で、<ruby>改修<rt>かいしゅう</rt></ruby>の工事が始まった。</p><p><ruby>茅葺き<rt>かやぶき</rt></ruby>の大きな屋根はそのままに、舞台の上に床を張り、壁をつけ、窓をあける。芝居の舞台を、教室につくりかえるのだ。村の人びとも、手のあいた日には木材を運んだり、<ruby>壁土<rt>かべつち</rt></ruby>をこねたりして、工事を手伝った。</p><p><ruby>新吉<rt>しんきち</rt></ruby>は、村の<ruby>大工<rt>だいく</rt></ruby>たちといっしょに、毎日のように工事を手伝った。</p><p>ある日、<ruby>天井裏<rt>てんじょううら</rt></ruby>にのぼった大工が、大きな声をあげた。</p><p class=\"q\">「先生、ちょっと来てみなせえ」</p><p>新吉がはしごをのぼると、薄暗い天井裏に、太い<ruby>心棒<rt>しんぼう</rt></ruby>が立っていた。<ruby>廻り舞台<rt>まわりぶたい</rt></ruby>を回すための、<ruby>回転軸<rt>かいてんじく</rt></ruby>だった。そこに、刻まれた文字があった。</p><p class=\"q\">「<ruby>天保三辰年<rt>てんぽうさんたつどし</rt></ruby>」</p><p>新吉は、息をのんだ。<ruby>天保<rt>てんぽう</rt></ruby>三年。祖父の<ruby>与吉<rt>よきち</rt></ruby>が十五の秋、生まれてはじめて<ruby>女形<rt>おやま</rt></ruby>をつとめた年だ。</p><p>与吉は、新吉が幼いころ、何度もその夜の話をしてくれた。笛と太鼓が谷にひびき、ろうそくの灯がゆれていた。舞台がくるりと回ると、年寄りも子どもも、手をたたいて笑った。</p><p class=\"q\">「あの舞台はな、村の宝だ。いつか、きっと、また役に立つ」</p><p>祖父の声が、耳の奥によみがえった。新吉は、心棒にそっと手をあてた。木の肌は冷たく、けれども、どこかあたたかいような気がした。</p><p class=\"q\">「この心棒は、そのまま残しておいてくれ」</p><p>新吉は大工たちに頼んだ。床を張っても、壁で囲っても、この文字だけは消さずにおきたかった。</p><p>秋になって、新しい教室ができあがった。広い<ruby>板の間<rt>いたのま</rt></ruby>に机が並び、高い窓から光がさしこむ。子どもたちは目をかがやかせて、教室を走りまわった。窓の外には、茅葺きの<ruby>軒先<rt>のきさき</rt></ruby>から、秋の日がやわらかくさしていた。</p><p>はじめての授業の日、新吉は黒板の前に立って、子どもたちに言った。</p><p class=\"q\">「この教室は、むかし芝居の舞台だった。お前たちのひいじいさんやひいばあさんが、ここで笑ったり泣いたりしたんだ。その人たちが守ってきた建物だ。大切に使うんだぞ」</p><p>子どもたちは、ふしぎそうに床を見つめた。</p><p>新吉はほほえんだ。足の下では、あの廻り舞台が、静かに眠っていた。</p>"}];
+let NEXT_MSG = '四の巻を聞き終えました。次は五の巻へ';
 
 const audio = document.getElementById('audio');
 const list = document.getElementById('list');
@@ -232,6 +232,7 @@ seek.addEventListener('input', ()=>{ if(audio.duration) audio.currentTime = seek
 audio.addEventListener('ended', ()=>{
   if(SLEEP[sleepIdx]===-1){ resetSleep(); playBtn.textContent='▶'; toast('おやすみなさい'); return; }
   if(continuous && cur < EPISODES.length-1){ load(cur+1,true); }
+  else if(continuous){ goNextVol().then(ok=>{ if(!ok){ playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; } }); }
   else { playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; }
 });
 audio.addEventListener('error', ()=>{
@@ -276,6 +277,46 @@ showSleep();
 function openFromHash(){ const m=location.hash.match(/^#ep(\d+)$/); if(m && EPISODES[+m[1]]) load(+m[1], false); }
 window.addEventListener('hashchange', openFromHash);
 setTimeout(openFromHash, 200);
+
+/* ---- 連続がオンなら、巻の終わりで次の巻を読みこんで、そのまま続けて再生する ---- */
+const VOLFILES=["index.html","maki2.html","maki3.html","maki4.html","maki5.html"];
+function curFile(){const f=location.pathname.split('/').pop();return f===''?'index.html':f;}
+function buildAll(){
+  list.innerHTML=''; texts.innerHTML='';
+  EPISODES.forEach((ep,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`<span class="no">${ep.no}</span><span class="ttl">${ep.title}</span><span class="mark">♪ 再生中</span>`;
+    li.onclick=()=>{ load(i,true); };
+    list.appendChild(li);
+    const art=document.createElement('article');
+    art.id='ep'+i;
+    art.innerHTML=`<h2>${ep.no}　${ep.title}</h2>${ep.era?`<div class="era">${ep.era}</div>`:''}<button class="readbtn">▶ この話を聞く</button>${ep.html}`;
+    art.querySelector('.readbtn').onclick=()=>{ load(i,true); };
+    texts.appendChild(art);
+  });
+}
+async function goNextVol(){
+  const i=VOLFILES.indexOf(curFile()); if(i<0||i>=VOLFILES.length-1) return false;
+  const nf=VOLFILES[i+1];
+  try{
+    const r=await fetch(nf,{cache:'no-store'}); if(!r.ok) return false;
+    const html=await r.text();
+    const m=html.match(/(?:const|let) EPISODES = (.*);\n/); if(!m) return false;
+    const eps=JSON.parse(m[1]);
+    const nm=html.match(/(?:const|let) NEXT_MSG = '(.*)';/);
+    const d=new DOMParser().parseFromString(html,'text/html');
+    ['.book','.series','h1','.subtitle','.desc','.nextvol','.volnav'].forEach(sel=>{
+      const a=document.querySelector(sel), b=d.querySelector(sel);
+      if(a&&b) a.replaceWith(document.importNode(b,true));
+    });
+    document.title=d.title;
+    try{ history.replaceState(null,'',nf); }catch(e){}
+    EPISODES=eps; if(nm) NEXT_MSG=nm[1];
+    buildAll(); cur=-1;
+    load(0,true);
+    return true;
+  }catch(e){ return false; }
+}
 </script>
 </body>
 </html>

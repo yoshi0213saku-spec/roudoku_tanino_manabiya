@@ -167,8 +167,8 @@
 <audio id="audio" preload="metadata"></audio>
 
 <script>
-const EPISODES = [{"no": "第三話", "title": "岩鼻の仮教室", "era": "明治三十年", "audio": "audio/03_dai3wa.mp3", "html": "<p>第三話。<ruby>岩鼻<rt>いわはな</rt></ruby>の<ruby>仮教室<rt>かりきょうしつ</rt></ruby>。</p><p>それから二十年あまりの月日が流れた。</p><p>明治三十年。谷の学校は、<ruby>常源寺<rt>じょうげんじ</rt></ruby>から岩鼻の民家へ移ることになった。子どもの数がふえ、<ruby>本堂<rt>ほんどう</rt></ruby>ではもう手ぜまになっていたのだ。</p><p><ruby>新吉<rt>しんきち</rt></ruby>は三十をこえ、村の子どもに字と<ruby>算術<rt>さんじゅつ</rt></ruby>を教える先生になっていた。<ruby>与吉<rt>よきち</rt></ruby>はすでに世を去り、新吉の家の<ruby>仏壇<rt>ぶつだん</rt></ruby>には、あの日の「新吉」の<ruby>半紙<rt>はんし</rt></ruby>が、今も大切にしまってある。</p><p>岩鼻の仮教室は、大きな農家の<ruby>座敷<rt>ざしき</rt></ruby>を借りたものだった。<ruby>障子<rt>しょうじ</rt></ruby>をあけると、<ruby>南相木川<rt>みなみあいきがわ</rt></ruby>の流れが見えた。冬になると、すきま風がつめたく吹きこんだ。子どもたちは、家から持ってきた炭を<ruby>火鉢<rt>ひばち</rt></ruby>に入れ、手をこすりあわせながら字を書いた。雨の日には天井からしずくが落ちてきて、子どもたちは机をずらしながら勉強した。</p><p class=\"q\">「先生、この算術がわかりません」</p><p>声をかけてきたのは、お花の長男の<ruby>正太<rt>しょうた</rt></ruby>だった。お花は、村の女の子たちに読み書きを教えながら、母になっていた。正太の家では、お花が夜ごと、子どもたちに本を読んで聞かせていた。</p><p>新吉は<ruby>石盤<rt>せきばん</rt></ruby>をのぞきこんで、ゆっくりと言った。</p><p class=\"q\">「<ruby>炭俵<rt>すみだわら</rt></ruby>が三つ。一つに炭が<ruby>四貫<rt>よんかん</rt></ruby>ずつ入っている。全部で何貫になる」</p><p>正太は指を折って数え、ぱっと顔をあげた。</p><p class=\"q\">「<ruby>十二貫<rt>じゅうにかん</rt></ruby>です」</p><p class=\"q\">「そうだ。昔、この谷の男たちは、炭を背負って<ruby>上州<rt>じょうしゅう</rt></ruby>まで売りに行った。俵を数えられなければ、損をさせられることもあったんだぞ」</p><p>子どもたちは、くすくす笑いながら、うなずいた。新吉は、祖父がよく言っていた言葉を思い出していた。数を知り、字を知ることは、自分の身を守ることでもあるのだ。</p><p>ある晩、村の<ruby>寄り合い<rt>よりあい</rt></ruby>で、新吉は言った。</p><p class=\"q\">「仮の教室では、もう子どもたちがおさまりません。村に、ちゃんとした<ruby>学び舎<rt>まなびや</rt></ruby>がほしい」</p><p>けれども、新しい校舎を建てる金は、村にはなかった。寄り合いの座敷に、重い沈黙が流れた。</p><p>そのとき、年寄りの一人がつぶやいた。</p><p class=\"q\">「<ruby>中島<rt>なかじま</rt></ruby>の<ruby>神楽殿<rt>かぐらでん</rt></ruby>があるじゃねえか。あそこは広い。屋根も高い」</p><p>寄り合いの目が、いっせいに新吉に向いた。新吉の胸に、祖父の与吉が語った、<ruby>廻り舞台<rt>まわりぶたい</rt></ruby>の夜の話がよみがえった。</p>"}];
-const NEXT_MSG = '三の巻を聞き終えました。次は四の巻へ';
+let EPISODES = [{"no": "第三話", "title": "岩鼻の仮教室", "era": "明治三十年", "audio": "audio/03_dai3wa.mp3", "html": "<p>第三話。<ruby>岩鼻<rt>いわはな</rt></ruby>の<ruby>仮教室<rt>かりきょうしつ</rt></ruby>。</p><p>それから二十年あまりの月日が流れた。</p><p>明治三十年。谷の学校は、<ruby>常源寺<rt>じょうげんじ</rt></ruby>から岩鼻の民家へ移ることになった。子どもの数がふえ、<ruby>本堂<rt>ほんどう</rt></ruby>ではもう手ぜまになっていたのだ。</p><p><ruby>新吉<rt>しんきち</rt></ruby>は三十をこえ、村の子どもに字と<ruby>算術<rt>さんじゅつ</rt></ruby>を教える先生になっていた。<ruby>与吉<rt>よきち</rt></ruby>はすでに世を去り、新吉の家の<ruby>仏壇<rt>ぶつだん</rt></ruby>には、あの日の「新吉」の<ruby>半紙<rt>はんし</rt></ruby>が、今も大切にしまってある。</p><p>岩鼻の仮教室は、大きな農家の<ruby>座敷<rt>ざしき</rt></ruby>を借りたものだった。<ruby>障子<rt>しょうじ</rt></ruby>をあけると、<ruby>南相木川<rt>みなみあいきがわ</rt></ruby>の流れが見えた。冬になると、すきま風がつめたく吹きこんだ。子どもたちは、家から持ってきた炭を<ruby>火鉢<rt>ひばち</rt></ruby>に入れ、手をこすりあわせながら字を書いた。雨の日には天井からしずくが落ちてきて、子どもたちは机をずらしながら勉強した。</p><p class=\"q\">「先生、この算術がわかりません」</p><p>声をかけてきたのは、お花の長男の<ruby>正太<rt>しょうた</rt></ruby>だった。お花は、村の女の子たちに読み書きを教えながら、母になっていた。正太の家では、お花が夜ごと、子どもたちに本を読んで聞かせていた。</p><p>新吉は<ruby>石盤<rt>せきばん</rt></ruby>をのぞきこんで、ゆっくりと言った。</p><p class=\"q\">「<ruby>炭俵<rt>すみだわら</rt></ruby>が三つ。一つに炭が<ruby>四貫<rt>よんかん</rt></ruby>ずつ入っている。全部で何貫になる」</p><p>正太は指を折って数え、ぱっと顔をあげた。</p><p class=\"q\">「<ruby>十二貫<rt>じゅうにかん</rt></ruby>です」</p><p class=\"q\">「そうだ。昔、この谷の男たちは、炭を背負って<ruby>上州<rt>じょうしゅう</rt></ruby>まで売りに行った。俵を数えられなければ、損をさせられることもあったんだぞ」</p><p>子どもたちは、くすくす笑いながら、うなずいた。新吉は、祖父がよく言っていた言葉を思い出していた。数を知り、字を知ることは、自分の身を守ることでもあるのだ。</p><p>ある晩、村の<ruby>寄り合い<rt>よりあい</rt></ruby>で、新吉は言った。</p><p class=\"q\">「仮の教室では、もう子どもたちがおさまりません。村に、ちゃんとした<ruby>学び舎<rt>まなびや</rt></ruby>がほしい」</p><p>けれども、新しい校舎を建てる金は、村にはなかった。寄り合いの座敷に、重い沈黙が流れた。</p><p>そのとき、年寄りの一人がつぶやいた。</p><p class=\"q\">「<ruby>中島<rt>なかじま</rt></ruby>の<ruby>神楽殿<rt>かぐらでん</rt></ruby>があるじゃねえか。あそこは広い。屋根も高い」</p><p>寄り合いの目が、いっせいに新吉に向いた。新吉の胸に、祖父の与吉が語った、<ruby>廻り舞台<rt>まわりぶたい</rt></ruby>の夜の話がよみがえった。</p>"}];
+let NEXT_MSG = '三の巻を聞き終えました。次は四の巻へ';
 
 const audio = document.getElementById('audio');
 const list = document.getElementById('list');
@@ -232,6 +232,7 @@ seek.addEventListener('input', ()=>{ if(audio.duration) audio.currentTime = seek
 audio.addEventListener('ended', ()=>{
   if(SLEEP[sleepIdx]===-1){ resetSleep(); playBtn.textContent='▶'; toast('おやすみなさい'); return; }
   if(continuous && cur < EPISODES.length-1){ load(cur+1,true); }
+  else if(continuous){ goNextVol().then(ok=>{ if(!ok){ playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; } }); }
   else { playBtn.textContent='▶'; nowttl.textContent=NEXT_MSG; document.getElementById('nextvol').style.display='block'; }
 });
 audio.addEventListener('error', ()=>{
@@ -276,6 +277,46 @@ showSleep();
 function openFromHash(){ const m=location.hash.match(/^#ep(\d+)$/); if(m && EPISODES[+m[1]]) load(+m[1], false); }
 window.addEventListener('hashchange', openFromHash);
 setTimeout(openFromHash, 200);
+
+/* ---- 連続がオンなら、巻の終わりで次の巻を読みこんで、そのまま続けて再生する ---- */
+const VOLFILES=["index.html","maki2.html","maki3.html","maki4.html","maki5.html"];
+function curFile(){const f=location.pathname.split('/').pop();return f===''?'index.html':f;}
+function buildAll(){
+  list.innerHTML=''; texts.innerHTML='';
+  EPISODES.forEach((ep,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`<span class="no">${ep.no}</span><span class="ttl">${ep.title}</span><span class="mark">♪ 再生中</span>`;
+    li.onclick=()=>{ load(i,true); };
+    list.appendChild(li);
+    const art=document.createElement('article');
+    art.id='ep'+i;
+    art.innerHTML=`<h2>${ep.no}　${ep.title}</h2>${ep.era?`<div class="era">${ep.era}</div>`:''}<button class="readbtn">▶ この話を聞く</button>${ep.html}`;
+    art.querySelector('.readbtn').onclick=()=>{ load(i,true); };
+    texts.appendChild(art);
+  });
+}
+async function goNextVol(){
+  const i=VOLFILES.indexOf(curFile()); if(i<0||i>=VOLFILES.length-1) return false;
+  const nf=VOLFILES[i+1];
+  try{
+    const r=await fetch(nf,{cache:'no-store'}); if(!r.ok) return false;
+    const html=await r.text();
+    const m=html.match(/(?:const|let) EPISODES = (.*);\n/); if(!m) return false;
+    const eps=JSON.parse(m[1]);
+    const nm=html.match(/(?:const|let) NEXT_MSG = '(.*)';/);
+    const d=new DOMParser().parseFromString(html,'text/html');
+    ['.book','.series','h1','.subtitle','.desc','.nextvol','.volnav'].forEach(sel=>{
+      const a=document.querySelector(sel), b=d.querySelector(sel);
+      if(a&&b) a.replaceWith(document.importNode(b,true));
+    });
+    document.title=d.title;
+    try{ history.replaceState(null,'',nf); }catch(e){}
+    EPISODES=eps; if(nm) NEXT_MSG=nm[1];
+    buildAll(); cur=-1;
+    load(0,true);
+    return true;
+  }catch(e){ return false; }
+}
 </script>
 </body>
 </html>
