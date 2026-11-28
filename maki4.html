@@ -99,6 +99,9 @@
   .player .head .now-ttl{flex:1; min-width:0; margin-bottom:0}
   .player button.sm{width:auto; height:32px; padding:0 10px; font-size:13px; white-space:nowrap}
   .player button.sm[aria-pressed="true"]{border-color:var(--gold); color:var(--gold)}
+
+  article p{transition:background-color .6s}
+  article p.cur{background:rgba(226,183,101,.10); border-radius:6px; box-shadow:0 0 0 6px rgba(226,183,101,.10)}
 </style>
 </head>
 <body>
@@ -302,6 +305,37 @@ async function goNextVol(){
     return true;
   }catch(e){ return false; }
 }
+
+/* ---- 文字送り：読み上げの進みぐあいに合わせて、本文を少しずつスクロールする ---- */
+(function(){
+  let userAt=0, lastP=null;
+  ['touchstart','touchmove','wheel','keydown'].forEach(ev=>window.addEventListener(ev,()=>{userAt=Date.now();},{passive:true}));
+  function plen(p){ let n=(p.textContent||'').replace(/\s/g,'').length;
+    p.querySelectorAll('rt').forEach(r=>{ n-=(r.textContent||'').length; }); return Math.max(1,n); }
+  function map(art){
+    if(art._map) return art._map;
+    let tot=0; const ps=[...art.querySelectorAll('p')].map(p=>{const l=plen(p); const o={p,start:tot,len:l}; tot+=l; return o;});
+    return art._map={ps,tot};
+  }
+  function frame(){
+    requestAnimationFrame(frame);
+    if(cur<0 || audio.paused || !audio.duration) return;
+    const art=document.getElementById('ep'+cur); if(!art) return;
+    const m=map(art); if(!m.ps.length) return;
+    const pos=Math.min(.999,audio.currentTime/audio.duration)*m.tot;
+    let it=m.ps[m.ps.length-1];
+    for(const o of m.ps){ if(pos<o.start+o.len){ it=o; break; } }
+    if(lastP!==it.p){ if(lastP) lastP.classList.remove('cur'); it.p.classList.add('cur'); lastP=it.p; }
+    if(Date.now()-userAt<5000) return;          // 指で動かしたあとは、5秒間は自動で送らない
+    const f=(pos-it.start)/it.len;
+    const r=it.p.getBoundingClientRect();
+    const y=window.scrollY + r.top + r.height*f;   // いま読んでいるあたり
+    const want=y - window.innerHeight*0.36;        // 画面の上から3分の1あたりに来るように
+    const d=want-window.scrollY;
+    if(Math.abs(d)>2) window.scrollTo(0, window.scrollY + d*0.06);
+  }
+  requestAnimationFrame(frame);
+})();
 </script>
 </body>
 </html>
